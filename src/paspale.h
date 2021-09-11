@@ -1,8 +1,6 @@
 #ifndef PASPALE_H
 #define PASPALE_H
 
-#define HAHAHA
-
 #ifdef __cplusplus
 extern "C" {
 #endif
