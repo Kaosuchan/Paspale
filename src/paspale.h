@@ -16,8 +16,8 @@ typedef struct Paspale {
 
 int PaspaleStart(Paspale);
 
-#define PaspaleGoto(task) ({return (Paspale){task};})
-#define PaspaleExit() ({return (Paspale){0};})
+#define PaspaleGoto(task) ((Paspale){task})
+#define PaspaleExit() ((Paspale){0})
 
 #ifdef __cplusplus
 }
