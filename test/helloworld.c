@@ -4,10 +4,10 @@
 Paspale _HelloWorld();
 
 Paspale HelloWorld() {
-  return PaspaleMakeRequestOfTask(_HelloWorld);
+  PaspaleGoto(_HelloWorld);
 }
 
 Paspale _HelloWorld() {
   printf("Hello World\n");
-  return PaspaleMakeRequestOfExit(0);
+  PaspaleExit();
 }
