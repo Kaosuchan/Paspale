@@ -5,42 +5,19 @@
 extern "C" {
 #endif
 
-#ifndef __PASPALE
-#define __PASPALE
-#endif
+struct Paspale;
 
-typedef enum  {
-  ERROR = -1,
-  EXIT,
-  TASK
-} PaspaleSign;
+typedef struct Paspale (*PaspaleFunction)();
 
-typedef struct {
-  PaspaleSign sign;
-} PaspaleRequest, *Paspale;
+typedef struct Paspale {
+  PaspaleFunction task;
+} Paspale;
 
-typedef struct {
-  PaspaleSign sign;
-  int errorCode;
-  char* errorMsg;
-} PaspaleRequestOfError;
-
-typedef struct {
-  PaspaleSign sign;
-  int exitValue;
-} PaspaleRequestOfExit;
-
-typedef Paspale (*PaspaleTask)();
-
-typedef struct {
-  PaspaleSign sign;
-  PaspaleTask task;
-} PaspaleRequestOfTask;
 
 int PaspaleStart(Paspale);
-Paspale PaspaleMakeRequestOfError(int, char*);
-Paspale PaspaleMakeRequestOfExit(int);
-Paspale PaspaleMakeRequestOfTask(PaspaleTask);
+
+#define PaspaleGoto(task) ({return (Paspale){task};})
+#define PaspaleExit() ({return (Paspale){0};})
 
 #ifdef __cplusplus
 }
